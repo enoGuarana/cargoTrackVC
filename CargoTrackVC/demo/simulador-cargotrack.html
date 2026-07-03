@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Simulador do fluxo CargoTrack VC">
+  <title>CargoTrack VC — Fluxo logistico verificavel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">
+        <div class="logo">CT</div>
+        <div>
+          <h1>CargoTrack VC</h1>
+          <p>Ordem de transporte + comprovante verificavel</p>
+        </div>
+      </div>
+      <span class="badge">Demo de portifolio</span>
+    </header>
+
+    <section class="layout">
+      <aside class="guide">
+        <span class="eyebrow" id="tag">Fluxo logistico</span>
+        <h2 id="guideTitle">Embarcador cria a ordem</h2>
+        <p class="lead" id="guideLead"></p>
+        <div class="behind">
+          <small>O que acontece por tras</small>
+          <p id="behind"></p>
+        </div>
+        <div class="connect">
+          <label for="apiUrl">Endereco da API</label>
+          <div class="connect-row">
+            <input id="apiUrl" value="http://localhost:8000/api/v1">
+            <button id="testApi">Conectar</button>
+          </div>
+          <div class="api" id="apiState"><i></i><span>API ainda nao consultada</span></div>
+        </div>
+        <ol class="steps" id="steps"></ol>
+      </aside>
+
+      <div class="stage">
+        <div class="stagehead">
+          <strong id="stageStatus">Aguardando inicio</strong>
+          <span id="scenario">Carga paletizada MT → SP</span>
+        </div>
+        <div class="system-event show" id="systemEvent">
+          <div class="event-icon">1</div>
+          <div class="event-copy">
+            <b id="eventTitle"></b>
+            <small id="eventText"></small>
+          </div>
+          <button id="eventAction">Executar</button>
+        </div>
+        <div class="tabs">
+          <button class="active" data-tab="driver">Motorista</button>
+          <button data-tab="receiver">Recebedor</button>
+        </div>
+        <div class="phones">
+          <div class="actor active" data-panel="driver">
+            <div class="actorlabel">Wallet do motorista</div>
+            <div class="phone"><div class="screen" id="driver"></div></div>
+          </div>
+          <div class="actor" data-panel="receiver">
+            <div class="actorlabel">Recebedor / validador</div>
+            <div class="phone"><div class="screen" id="inspector"></div></div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="control" id="reset">Reiniciar</button>
+          <button class="control" id="prev">Anterior</button>
+          <button class="control primary" id="next">Executar etapa</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="vendor/qrcode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

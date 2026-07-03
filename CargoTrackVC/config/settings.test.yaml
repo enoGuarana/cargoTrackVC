@@ -1,0 +1,67 @@
+# Test Configuration
+app:
+  name: "cargotrack-vc-test"
+  version: "1.0.0"
+  debug: true
+  env: "test"
+
+server:
+  host: "127.0.0.1"
+  port: 8001
+  workers: 1
+  reload: false
+
+api:
+  prefix: "/api/v1"
+  docs_url: "/docs"
+  redoc_url: "/redoc"
+  openapi_url: "/openapi.json"
+
+database:
+  url: "sqlite:///./test.db"
+  pool_size: 5
+  max_overflow: 10
+  pool_timeout: 10
+  echo: true
+
+redis:
+  host: "localhost"
+  port: 6379
+  db: 1
+  password: ""
+  decode_responses: true
+
+queue:
+  broker_url: "memory://"
+  result_backend: "cache+memory://"
+  task_always_eager: true
+  task_store_eager_result: true
+
+crypto:
+  cert_path: "./tests/fixtures/test_cert.pem"
+  key_path: "./tests/fixtures/test_key.pem"
+  hsm_enabled: false
+  ecdsa_curve: "P-256"
+  cryptosuite: "ecdsa-rdfc-2019"
+
+notifications:
+  push_provider: "mock"
+  max_retries: 1
+  retry_delay: 0.1
+
+logging:
+  level: "DEBUG"
+  format: "text"
+  access_log: false
+
+security:
+  mtls_enabled: false
+  jwt_algorithm: "ES256"
+  jwt_issuer: "cargotrack-vc-test"
+  jwt_audience: "cargotrack-test-clients"
+  jwt_expiration_minutes: 60
+
+logistics:
+  validade_ordem_dias: 15
+  descricao_padrao: "Carga geral"
+  unidade: "kg"

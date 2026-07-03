@@ -1,0 +1,81 @@
+# CargoTrack VC Application Settings
+# Environment-specific values should be injected via env vars or secrets
+
+app:
+  name: "cargotrack-vc"
+  version: "1.0.0"
+  debug: false
+  env: "production"
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  reload: false
+  timeout_keep_alive: 30
+
+api:
+  prefix: "/api/v1"
+  docs_url: "/docs"
+  redoc_url: "/redoc"
+  openapi_url: "/openapi.json"
+
+database:
+  url: "${DATABASE_URL}"
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  echo: false
+
+redis:
+  host: "${REDIS_HOST:redis}"
+  port: "${REDIS_PORT:6379}"
+  db: 0
+  password: "${REDIS_PASSWORD:}"
+  decode_responses: true
+
+queue:
+  broker_url: "${CELERY_BROKER_URL:redis://redis:6379/0}"
+  result_backend: "${CELERY_RESULT_BACKEND:redis://redis:6379/0}"
+  task_serializer: "json"
+  accept_content: ["json"]
+  result_serializer: "json"
+  timezone: "America/Sao_Paulo"
+  enable_utc: true
+  task_track_started: true
+  task_time_limit: 300
+  worker_prefetch_multiplier: 1
+
+crypto:
+  cert_path: "${CERT_PATH:/secrets/cert.pem}"
+  key_path: "${KEY_PATH:/secrets/key.pem}"
+  hsm_enabled: "${HSM_ENABLED:false}"
+  hsm_library_path: "${HSM_LIBRARY_PATH:}"
+  hsm_slot: "${HSM_SLOT:0}"
+  hsm_pin: "${HSM_PIN:}"
+  ecdsa_curve: "P-256"
+  cryptosuite: "ecdsa-rdfc-2019"
+
+notifications:
+  push_provider: "${PUSH_PROVIDER:firebase}"
+  firebase_credentials: "${FIREBASE_CREDENTIALS_PATH:}"
+  max_retries: 3
+  retry_delay: 5.0
+
+logging:
+  level: "INFO"
+  format: "json"
+  access_log: true
+
+security:
+  mtls_enabled: "${MTLS_ENABLED:false}"
+  ca_cert_path: "${CA_CERT_PATH:/secrets/ca.pem}"
+  jwt_algorithm: "ES256"
+  jwt_issuer: "cargotrack-vc"
+  jwt_audience: "cargotrack-clients"
+  jwt_expiration_minutes: 60
+
+logistics:
+  validade_ordem_dias: 15
+  descricao_padrao: "Carga geral"
+  unidade: "kg"
